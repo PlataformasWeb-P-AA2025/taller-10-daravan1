@@ -1,0 +1,33 @@
+<h1>Listado de Barrios</h1>
+
+    {% if barrios %}
+    <table>
+        <caption>Listado de Barrios Registrados</caption>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>N° Viviendas</th>
+                <th>N° Parques</th>
+                <th>N° Edificios</th>
+                <th>Parroquia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for barrio in barrios %}
+            <tr>
+                <td>{{ barrio.nombre }}</td>
+                <td>{{ barrio.num_viviendas }}</td>
+                <td>{{ barrio.num_parques }}</td>
+                <td>{{ barrio.num_edificios }}</td>
+                <td>{{ barrio.parroquia.nombre }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No hay barrios registrados.</p>
+    {% endif %}
+<p>
+    <a href="{% url 'agregar_barrio' %}" class="btn btn-success">Agregar nuevo barrio</a>
+</p>
+<a href="{% url 'index' %}">Volver al inicio</a>

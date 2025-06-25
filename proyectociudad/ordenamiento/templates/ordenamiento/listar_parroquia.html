@@ -1,0 +1,36 @@
+ <h1>Listado de Parroquias</h1>
+<table>
+        <caption>Parroquias y sus Barrios</caption>
+        <thead>
+            <tr>
+                <th>Parroquia</th>
+                <th>Ubicacion</th>
+                <th>Tipo</th>
+                <th>Barrio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for parroquia in parroquias %}
+                {% for barrio in parroquia.barrios.all %}
+                    <tr>
+                        <td>{{ parroquia.nombre }}</td>
+                        <td>{{parroquia.ubicacion}}</td>
+                        <td>{{ parroquia.tipo }}</td>
+                        <td>{{ barrio.nombre }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td>{{ parroquia.nombre }}</td>
+                        <td colspan="4">No hay barrios registrados</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p>
+    <a href="{% url 'agregar_parroquia' %}" class="btn btn-success">Agregar nueva parroquia</a>
+    </p>
+    <a href="{% url 'index' %}">Volver al inicio</a>
+
+    
